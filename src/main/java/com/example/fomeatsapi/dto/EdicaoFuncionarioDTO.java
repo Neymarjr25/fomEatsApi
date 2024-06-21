@@ -1,21 +1,21 @@
-package com.example.fomeatsapi.model;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
+package com.example.fomeatsapi.dto;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
-public class Cadastro {
+
+public class EdicaoFuncionarioDTO {
+
     @NotBlank(message = "O nome é obrigatório.")
     private String nome;
 
     @Email(message = "Email deve ser válido.")
     @NotBlank(message = "O email é obrigatório.")
     private String email;
-
-    @NotBlank(message = "A senha é obrigatória.")
-    @Size(min = 6, message = "A senha deve ter no mínimo 6 caracteres.")
-    private String senha;
 
     @NotNull(message = "A data de nascimento é obrigatória.")
     @Past(message = "A data de nascimento deve ser no passado.")
@@ -27,7 +27,7 @@ public class Cadastro {
     @NotBlank(message = "O endereço é obrigatório.")
     private String endereco;
 
-    // Getters e Setters seguindo o padrão CamelCase
+    // Getters e Setters
     public String getNome() {
         return nome;
     }
@@ -42,14 +42,6 @@ public class Cadastro {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public LocalDate getDataNascimento() {

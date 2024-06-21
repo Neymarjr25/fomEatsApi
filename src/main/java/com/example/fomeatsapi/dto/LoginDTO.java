@@ -1,13 +1,30 @@
 package com.example.fomeatsapi.dto;
 
-import org.antlr.v4.runtime.misc.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 public class LoginDTO {
 
-
-    @NotNull()
+    @NotNull
     private String email;
-    @NotNull()
 
+    @NotNull
     private String senha;
+
+    // Getters and Setters
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 }

@@ -1,16 +1,23 @@
 package com.example.fomeatsapi.model;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
+
+import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
-public class Cadastro {
+
+@Entity
+@Table(name = "funcionarios")
+public class Funcionario {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @NotBlank(message = "O nome é obrigatório.")
     private String nome;
 
     @Email(message = "Email deve ser válido.")
     @NotBlank(message = "O email é obrigatório.")
+    @Column(unique = true)
     private String email;
 
     @NotBlank(message = "A senha é obrigatória.")
@@ -27,7 +34,15 @@ public class Cadastro {
     @NotBlank(message = "O endereço é obrigatório.")
     private String endereco;
 
-    // Getters e Setters seguindo o padrão CamelCase
+    // Getters e Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }

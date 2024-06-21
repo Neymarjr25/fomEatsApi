@@ -30,6 +30,7 @@ public class CadastroDTO {
     @NotBlank(message = "O endereço é obrigatório.")
     private String endereco;
 
+    // Getters e Setters seguindo o padrão CamelCase
     public String getNome() {
         return nome;
     }

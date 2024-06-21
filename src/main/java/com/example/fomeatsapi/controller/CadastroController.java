@@ -1,7 +1,7 @@
 package com.example.fomeatsapi.controller;
 
+import com.example.fomeatsapi.dto.EdicaoFuncionarioDTO;
 import com.example.fomeatsapi.model.Cadastro;
-import com.example.fomeatsapi.repository.CadastroRepository;
 import com.example.fomeatsapi.service.CadastroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,11 +13,14 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/cadastro")
-public class cadastro {
+public class CadastroController {
+
+    private final CadastroService cadastroService;
 
     @Autowired
-    private CadastroService cadastroService;
-    private CadastroRepository cadastroRepository;
+    public CadastroController(CadastroService cadastroService) {
+        this.cadastroService = cadastroService;
+    }
 
     @PostMapping("/cadastrar")
     public ResponseEntity<Cadastro> cadastrarUsuario(@Valid @RequestBody Cadastro cadastroModel) {
@@ -32,4 +35,12 @@ public class cadastro {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<Cadastro> editarFuncionario(
+            @PathVariable Long id,
+            @Valid @RequestBody EdicaoFuncionarioDTO edicaoDTO) {
+
+        Cadastro funcionarioAtualizado = cadastroService.atualizarDadosFuncionario(id, edicaoDTO);
+        return new ResponseEntity<>(funcionarioAtualizado, HttpStatus.OK);
+    }
 }
